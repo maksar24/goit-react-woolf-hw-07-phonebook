@@ -1,14 +1,14 @@
 import Button from 'components/Button/Button';
 import { Item, Text } from './ContactItem.styled';
 import { useDispatch } from 'react-redux';
-import { deleteContactAction } from '../../redux/contactsSlice';
 import { toast } from 'react-toastify';
+import { deleteContact } from '../../redux/contacts/operations';
 
-const ContactItem = ({ id, name, number }) => {
+const ContactItem = ({ id, name, phone }) => {
   const dispatch = useDispatch();
 
-  const deleteContact = () => {
-    dispatch(deleteContactAction(id));
+  const deleteContactById = () => {
+    dispatch(deleteContact(id));
     toast.success('Element deleted successfully!', {
       position: 'top-right',
       style: {
@@ -21,8 +21,8 @@ const ContactItem = ({ id, name, number }) => {
   return (
     <Item>
       <Text>{name}</Text>
-      <Text>{number}</Text>
-      <Button onClick={deleteContact}>Delete</Button>
+      <Text>{phone}</Text>
+      <Button onClick={deleteContactById}>Delete</Button>
     </Item>
   );
 };

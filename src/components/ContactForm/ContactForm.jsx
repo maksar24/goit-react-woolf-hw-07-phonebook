@@ -1,20 +1,20 @@
 import Button from 'components/Button/Button';
 import { Form, Input, Text } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContacts } from '../../redux/selectors';
-import { addContactAction } from '../../redux/contactsSlice';
+import { selectContacts } from '../../redux/selectors';
 import { toast } from 'react-toastify';
+import { addContact } from '../../redux/contacts/operations';
 
 const ContactForm = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
 
   const handleSubmit = e => {
     e.preventDefault();
 
     const formData = {
       name: e.target.name.value,
-      number: e.target.number.value,
+      phone: e.target.number.value,
     };
 
     const checkName = contacts.some(
@@ -25,7 +25,7 @@ const ContactForm = () => {
       return alert(`${formData.name} is already in contacts.`);
     }
 
-    dispatch(addContactAction(formData));
+    dispatch(addContact(formData));
 
     toast.success('Element added successfully!', {
       position: 'top-right',
@@ -44,7 +44,7 @@ const ContactForm = () => {
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
         required
       />
-      <Text>Number</Text>
+      <Text>Phone number</Text>
       <Input
         type="tel"
         name="number"

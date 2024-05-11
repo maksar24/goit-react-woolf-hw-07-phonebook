@@ -12,3 +12,10 @@ export const SecondaryTitle = styled.h2`
   font-family: 'CerebriSans-Bold', -apple-system, BlinkMacSystemFont, 'Roboto',
     sans-serif !important;
 `;
+
+export const ErrorTitle = styled.h2`
+  font-size: 1.8em;
+  font-family: 'CerebriSans-Bold', -apple-system, BlinkMacSystemFont, 'Roboto',
+    sans-serif !important;
+  color: #e5250f;
+`;
